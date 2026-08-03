@@ -17,6 +17,116 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .hero { perspective: 1100px; }
+    .hero-bg {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(93,120,255,.14), transparent 38%),
+        linear-gradient(180deg, #07111f 0%, #081628 100%);
+    }
+    .spotlight,
+    .stage-orb,
+    .audience {
+      will-change: transform;
+      transform: translate3d(var(--px, 0), var(--py, 0), 0) rotate(var(--rot, 0deg));
+    }
+    .spotlight {
+      animation: beamPulse 7s ease-in-out infinite alternate;
+      filter: blur(.2px);
+    }
+    .spotlight.one { --rot: -9deg; animation-delay: -1.5s; }
+    .spotlight.two { --rot: 4deg; animation-delay: -4s; }
+    .spotlight.three { --rot: 10deg; animation-delay: -2.7s; }
+    .stage-orb { --rot: 0deg; }
+    .audience { --rot: 0deg; }
+    .hero-grid {
+      transform: translate3d(var(--content-x, 0), var(--content-y, 0), 0);
+      will-change: transform;
+    }
+    @keyframes beamPulse {
+      0% { opacity: .09; filter: blur(.4px) brightness(.95); }
+      100% { opacity: .18; filter: blur(1px) brightness(1.15); }
+    }
+
+    .step-visual {
+      height: 230px;
+      background: #0b1728;
+      position: relative;
+      overflow: hidden;
+    }
+    .step-visual::before,
+    .step-visual::after { display: none !important; }
+    .step-photo,
+    .example-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .step-photo {
+      filter: saturate(.9) contrast(1.04) brightness(.86);
+      transition: transform .55s cubic-bezier(.2,.75,.2,1), filter .55s ease;
+    }
+    .step:hover .step-photo {
+      transform: scale(1.045);
+      filter: saturate(1.05) contrast(1.06) brightness(.94);
+    }
+    .step-visual .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7,17,31,.02) 35%, rgba(7,17,31,.54) 100%);
+      pointer-events: none;
+    }
+    .step-visual .photo-label {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      z-index: 2;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(7,17,31,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .example-art { display: none !important; }
+    .example-photo {
+      position: absolute;
+      inset: 0;
+      filter: saturate(.92) contrast(1.04) brightness(.82);
+      transform: scale(1.015);
+      transition: transform .6s cubic-bezier(.2,.75,.2,1), filter .6s ease;
+    }
+    .example:hover .example-photo {
+      transform: scale(1.06);
+      filter: saturate(1.08) contrast(1.08) brightness(.9);
+    }
+    .example-overlay {
+      background: linear-gradient(180deg, rgba(4,9,17,.06) 18%, rgba(4,9,17,.88) 100%);
+    }
+    .example-tag {
+      background: rgba(7,17,31,.78);
+      border: 1px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(8px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .spotlight { animation: none; }
+      .spotlight,
+      .stage-orb,
+      .audience,
+      .hero-grid { transform: none !important; }
+      .step-photo,
+      .example-photo { transition: none; }
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -47,15 +157,15 @@
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero" id="hero">
       <div class="hero-bg"></div>
-      <div class="spotlight one"></div>
-      <div class="spotlight two"></div>
-      <div class="spotlight three"></div>
-      <div class="stage-orb"></div>
-      <div class="audience"></div>
+      <div class="spotlight one" data-depth="1.15"></div>
+      <div class="spotlight two" data-depth=".82"></div>
+      <div class="spotlight three" data-depth="1.35"></div>
+      <div class="stage-orb" data-depth=".48"></div>
+      <div class="audience" data-depth=".2"></div>
 
-      <div class="wrap hero-grid">
+      <div class="wrap hero-grid" data-content-depth=".15">
         <div>
           <p class="eyebrow">Open talent show for AI creations</p>
           <h1>AI'S GOT<br>TALENT</h1>
@@ -95,9 +205,27 @@
         </div>
 
         <div class="steps">
-          <article class="step"><div class="step-visual"></div><div class="step-body"><span class="step-index">01</span><h3>Submit</h3><p>Send a link, demo, file or short description of your AI creation.</p></div></article>
-          <article class="step"><div class="step-visual"></div><div class="step-body"><span class="step-index">02</span><h3>Get selected</h3><p>The most interesting acts become official nominees and get a shareable visual.</p></div></article>
-          <article class="step"><div class="step-visual"></div><div class="step-body"><span class="step-index">03</span><h3>Face the vote</h3><p>The public votes on social, the jury reacts, and the winners are announced.</p></div></article>
+          <article class="step">
+            <div class="step-visual">
+              <img class="step-photo" src="https://images.pexels.com/photos/18259219/pexels-photo-18259219.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Singer performing live on stage" loading="lazy" />
+              <div class="photo-overlay"></div><span class="photo-label">Enter the stage</span>
+            </div>
+            <div class="step-body"><span class="step-index">01</span><h3>Submit</h3><p>Send a link, demo, file or short description of your AI creation.</p></div>
+          </article>
+          <article class="step">
+            <div class="step-visual">
+              <img class="step-photo" src="https://images.pexels.com/photos/31731254/pexels-photo-31731254.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Audience applauding performers in a theater" loading="lazy" />
+              <div class="photo-overlay"></div><span class="photo-label">Official selection</span>
+            </div>
+            <div class="step-body"><span class="step-index">02</span><h3>Get selected</h3><p>The most interesting acts become official nominees and get a shareable visual.</p></div>
+          </article>
+          <article class="step">
+            <div class="step-visual">
+              <img class="step-photo" src="https://images.pexels.com/photos/9972662/pexels-photo-9972662.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Performer facing a live audience holding smartphones" loading="lazy" />
+              <div class="photo-overlay"></div><span class="photo-label">Public reaction</span>
+            </div>
+            <div class="step-body"><span class="step-index">03</span><h3>Face the vote</h3><p>The public votes on social, the jury reacts, and the winners are announced.</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -110,10 +238,22 @@
         </div>
 
         <div class="examples-grid">
-          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful</span><p>A simple idea becomes unexpectedly moving, elegant or cinematic.</p></div></article>
-          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Funny</span><p>A bizarre, clever or absurd act that people instantly want to share.</p></div></article>
-          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Useful</span><p>An AI tool, workflow or agent that solves a real problem sharply.</p></div></article>
-          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful failure</span><p>A glorious mistake or happy accident that becomes the whole point.</p></div></article>
+          <article class="example">
+            <img class="example-photo" src="https://images.pexels.com/photos/2263435/pexels-photo-2263435.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Spectacular stage lights over a live audience" loading="lazy" />
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful</span><p>A simple idea becomes unexpectedly moving, elegant or cinematic.</p></div>
+          </article>
+          <article class="example">
+            <img class="example-photo" src="https://images.pexels.com/photos/35481826/pexels-photo-35481826.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Comedian performing with a microphone on stage" loading="lazy" />
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Funny</span><p>A bizarre, clever or absurd act that people instantly want to share.</p></div>
+          </article>
+          <article class="example">
+            <img class="example-photo" src="https://images.pexels.com/photos/29627312/pexels-photo-29627312.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Technology creator presenting tools to an audience" loading="lazy" />
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Useful</span><p>An AI tool, workflow or agent that solves a real problem sharply.</p></div>
+          </article>
+          <article class="example">
+            <img class="example-photo" src="https://images.pexels.com/photos/13073249/pexels-photo-13073249.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Colorful and unconventional live stage performance" loading="lazy" />
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful failure</span><p>A glorious mistake or happy accident that becomes the whole point.</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -163,12 +303,59 @@
       banner.style.display = 'block';
       setTimeout(() => { banner.style.display = 'none'; }, 6000);
     }
-    if (window.matchMedia('(pointer:fine)').matches) {
+
+    (() => {
+      const hero = document.getElementById('hero');
+      if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const layers = [...hero.querySelectorAll('[data-depth]')];
+      const content = hero.querySelector('[data-content-depth]');
+      let pointerX = 0;
+      let pointerY = 0;
+      let targetX = 0;
+      let targetY = 0;
+      let scrollShift = 0;
+      let raf = 0;
+
+      const render = () => {
+        pointerX += (targetX - pointerX) * .075;
+        pointerY += (targetY - pointerY) * .075;
+
+        layers.forEach((layer) => {
+          const depth = Number(layer.dataset.depth || 1);
+          const x = pointerX * 22 * depth;
+          const y = pointerY * 14 * depth + scrollShift * depth;
+          layer.style.setProperty('--px', `${x}px`);
+          layer.style.setProperty('--py', `${y}px`);
+        });
+
+        if (content) {
+          content.style.setProperty('--content-x', `${pointerX * -5}px`);
+          content.style.setProperty('--content-y', `${pointerY * -3 + scrollShift * .08}px`);
+        }
+        raf = requestAnimationFrame(render);
+      };
+
+      hero.addEventListener('pointermove', (event) => {
+        const rect = hero.getBoundingClientRect();
+        targetX = ((event.clientX - rect.left) / rect.width - .5) * 2;
+        targetY = ((event.clientY - rect.top) / rect.height - .5) * 2;
+      }, { passive: true });
+
+      hero.addEventListener('pointerleave', () => {
+        targetX = 0;
+        targetY = 0;
+      }, { passive: true });
+
       window.addEventListener('scroll', () => {
-        const y = Math.max(0, Math.min(window.scrollY * .12, 34));
-        document.documentElement.style.setProperty('--parallax', `${y}px`);
-      }, { passive:true });
-    }
+        const rect = hero.getBoundingClientRect();
+        const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height)));
+        scrollShift = progress * 48;
+      }, { passive: true });
+
+      raf = requestAnimationFrame(render);
+      window.addEventListener('pagehide', () => cancelAnimationFrame(raf), { once: true });
+    })();
   </script>
 </body>
 </html>
