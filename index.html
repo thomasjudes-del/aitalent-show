@@ -3,604 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>AI Talent — The Open Talent Show for AI Creations</title>
-  <meta name="description" content="Enter AI Talent, the open talent show for AI music, film, art, agents, characters, tools and beautiful failures." />
-  <meta name="keywords" content="AI Talent, AI talent show, AI creations, AI art competition, AI music, AI film, AI agents, generative AI creators" />
+  <title>AI Talent — AI's Got Talent for the internet</title>
+  <meta name="description" content="AI Talent is the stage for the best, weirdest and most impressive AI creations on the internet. Submit your act. Get selected. Face the vote." />
   <link rel="canonical" href="https://aitalent.show/" />
-
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aitalent.show/" />
   <meta property="og:title" content="AI's Got Talent" />
-  <meta property="og:description" content="Submit it. Get selected. Face the vote." />
+  <meta property="og:description" content="A stage for the best, weirdest and most impressive AI creations on the internet." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AI's Got Talent" />
-  <meta name="twitter:description" content="The open talent show for AI creations." />
-
+  <meta name="twitter:description" content="Submit your act. Get selected. Face the vote." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --cream: #f5f0e6;
-      --navy: #071a3a;
-      --blue: #165dff;
-      --coral: #ff5a5f;
-      --gold: #f4c84a;
-      --white: #fffdf7;
-      --ink: #0d1730;
-      --line: rgba(7, 26, 58, .18);
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--cream);
-      color: var(--ink);
-      font-family: "DM Sans", Arial, sans-serif;
-      line-height: 1.4;
-      text-rendering: optimizeLegibility;
-    }
-
-    a { color: inherit; }
-    button, input, textarea, select { font: inherit; }
-    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(245, 240, 230, .97);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(10px);
-    }
-
-    .topbar-inner {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .brand-star {
-      width: 18px;
-      height: 18px;
-      background: var(--coral);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 94%, 50% 72%, 21% 94%, 32% 57%, 2% 35%, 39% 35%);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-    }
-
-    .nav a {
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .nav .nav-cta {
-      padding: 11px 16px;
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 999px;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      background: var(--navy);
-      color: var(--white);
-      min-height: 760px;
-      display: flex;
-      align-items: center;
-      padding: 90px 0 74px;
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .hero::before {
-      width: 420px;
-      height: 420px;
-      right: -125px;
-      top: 70px;
-      background: var(--blue);
-      border-radius: 50%;
-    }
-
-    .hero::after {
-      width: 170px;
-      height: 170px;
-      right: 100px;
-      top: 120px;
-      background: var(--gold);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 94%, 50% 72%, 21% 94%, 32% 57%, 2% 35%, 39% 35%);
-      transform: rotate(7deg);
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
-      gap: 70px;
-      align-items: end;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 22px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 2px;
-      background: var(--gold);
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 850px;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: clamp(92px, 15vw, 188px);
-      line-height: .76;
-      letter-spacing: -.02em;
-      text-transform: uppercase;
-    }
-
-    .hero-sub {
-      margin: 30px 0 0;
-      max-width: 720px;
-      font-size: clamp(22px, 2.5vw, 34px);
-      line-height: 1.08;
-      letter-spacing: -.035em;
-    }
-
-    .hero-sub em {
-      font-family: "Bodoni Moda", Georgia, serif;
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .hero-card {
-      background: var(--cream);
-      color: var(--navy);
-      padding: 28px;
-      border-radius: 22px;
-      box-shadow: 14px 14px 0 var(--coral);
-    }
-
-    .hero-card small {
-      display: block;
-      margin-bottom: 24px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
-
-    .hero-card strong {
-      display: block;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: 48px;
-      line-height: .9;
-      letter-spacing: .01em;
-      text-transform: uppercase;
-    }
-
-    .hero-card p { margin: 16px 0 24px; font-size: 15px; }
-
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 20px;
-      border: 0;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .button:hover { transform: translateY(-2px); }
-    .button.primary { background: var(--coral); color: var(--white); }
-    .button.secondary { background: var(--gold); color: var(--navy); }
-    .button.dark { background: var(--navy); color: var(--white); }
-    .button.light { background: var(--white); color: var(--navy); }
-
-    .category-strip {
-      background: var(--blue);
-      color: var(--white);
-      border-top: 1px solid rgba(255,255,255,.15);
-      border-bottom: 1px solid rgba(255,255,255,.15);
-    }
-
-    .category-list {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      white-space: nowrap;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: 22px;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .category-list::-webkit-scrollbar { display: none; }
-    .category-list span { display: inline-flex; align-items: center; gap: 20px; }
-    .category-list span::after { content: "★"; color: var(--gold); font-size: 14px; }
-    .category-list span:last-child::after { display: none; }
-
-    section { padding: 90px 0; }
-    .section-kicker {
-      margin: 0 0 18px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
-
-    h2 {
-      margin: 0;
-      max-width: 900px;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: clamp(56px, 8vw, 104px);
-      line-height: .88;
-      letter-spacing: -.01em;
-      text-transform: uppercase;
-    }
-
-    .intro-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
-      gap: 70px;
-      align-items: end;
-      margin-bottom: 48px;
-    }
-
-    .intro-row p {
-      margin: 0;
-      font-size: 19px;
-      color: #34405b;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .step {
-      min-height: 280px;
-      padding: 28px;
-      border-radius: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .step:nth-child(1) { background: var(--gold); }
-    .step:nth-child(2) { background: var(--coral); color: var(--white); }
-    .step:nth-child(3) { background: var(--blue); color: var(--white); }
-
-    .step-number {
-      display: inline-flex;
-      width: 40px;
-      height: 40px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,.82);
-      color: var(--navy);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .step h3 {
-      margin: 86px 0 12px;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: 42px;
-      line-height: .95;
-      text-transform: uppercase;
-    }
-
-    .step p { margin: 0; max-width: 300px; font-size: 16px; }
-
-    .episode {
-      background: var(--white);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .episode-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      align-items: center;
-    }
-
-    .scoreboard {
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 24px;
-      padding: 24px;
-    }
-
-    .scoreboard-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(255,255,255,.18);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .score-row {
-      display: grid;
-      grid-template-columns: 78px 1fr;
-      gap: 20px;
-      align-items: center;
-      padding: 24px 0;
-      border-bottom: 1px solid rgba(255,255,255,.14);
-    }
-
-    .score-row:last-child { border-bottom: 0; }
-    .score-row strong {
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: 68px;
-      line-height: .8;
-      color: var(--coral);
-    }
-
-    .score-row span {
-      font-size: 17px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .jury-lockup {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .pill {
-      padding: 10px 14px;
-      border: 1px solid var(--navy);
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .acts { background: var(--cream); }
-
-    .act-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 46px;
-    }
-
-    .act-card {
-      min-height: 270px;
-      padding: 28px;
-      border-radius: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .act-card:nth-child(1) { background: var(--navy); color: var(--white); }
-    .act-card:nth-child(2) { background: var(--gold); }
-    .act-card:nth-child(3) { background: var(--blue); color: var(--white); }
-    .act-card:nth-child(4) { background: var(--coral); color: var(--white); }
-
-    .act-card span {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .act-card p {
-      margin: 50px 0 0;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: .96;
-      text-transform: uppercase;
-    }
-
-    .submit-section {
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    .submit-section .section-kicker { color: var(--gold); }
-    .submit-grid {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 70px;
-      align-items: start;
-    }
-
-    .submit-copy p {
-      margin: 24px 0 0;
-      max-width: 440px;
-      font-size: 18px;
-      color: rgba(255,255,255,.82);
-    }
-
-    .email-link {
-      display: inline-block;
-      margin-top: 26px;
-      color: var(--gold);
-      font-weight: 700;
-      text-underline-offset: 4px;
-    }
-
-    .form-card {
-      background: var(--white);
-      color: var(--navy);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 14px 14px 0 var(--gold);
-    }
-
-    form { display: grid; gap: 18px; }
-    .field { display: grid; gap: 8px; }
-    .field label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      min-height: 50px;
-      padding: 13px 14px;
-      border: 1px solid rgba(7,26,58,.2);
-      border-radius: 12px;
-      background: var(--cream);
-      color: var(--navy);
-      outline: none;
-    }
-
-    textarea { min-height: 100px; resize: vertical; }
-    input:focus, select:focus, textarea:focus { border-color: var(--blue); }
-
-    .field-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .consent {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      font-size: 12px;
-      color: #51607d;
-    }
-
-    .consent input { width: auto; min-height: 0; margin-top: 3px; }
-    .form-note { margin: 0; font-size: 11px; color: #6c7890; }
-
-    .small-print {
-      padding: 62px 0;
-      background: var(--navy);
-      color: var(--white);
-    }
-
-    .small-print-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-    }
-
-    .small-print h3 {
-      margin: 0 0 14px;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      font-size: 34px;
-      text-transform: uppercase;
-    }
-
-    .small-print p { margin: 0; color: rgba(255,255,255,.72); }
-
-    footer {
-      padding: 28px 0;
-      background: var(--navy);
-      color: rgba(255,255,255,.6);
-      border-top: 1px solid rgba(255,255,255,.14);
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      font-size: 11px;
-    }
-
-    @media (max-width: 920px) {
-      .hero { min-height: auto; }
-      .hero-grid,
-      .intro-row,
-      .episode-grid,
-      .submit-grid,
-      .small-print-grid { grid-template-columns: 1fr; }
-      .hero-card { max-width: 420px; }
-      .steps { grid-template-columns: 1fr; }
-      .step { min-height: 220px; }
-      .step h3 { margin-top: 54px; }
-      .act-grid { grid-template-columns: 1fr; }
-      .nav a:not(.nav-cta) { display: none; }
-    }
-
-    @media (max-width: 620px) {
-      .wrap { width: min(var(--max), calc(100% - 24px)); }
-      .topbar-inner { min-height: 60px; }
-      .brand span:last-child { display: none; }
-      .hero { padding: 70px 0 56px; }
-      .hero::before { width: 270px; height: 270px; right: -140px; top: 90px; }
-      .hero::after { width: 90px; height: 90px; right: 30px; top: 118px; }
-      h1 { font-size: clamp(88px, 28vw, 132px); }
-      .hero-sub { font-size: 22px; }
-      .hero-card { box-shadow: 8px 8px 0 var(--coral); }
-      section { padding: 66px 0; }
-      .category-list { min-height: 56px; }
-      .field-grid { grid-template-columns: 1fr; }
-      .form-card { padding: 20px; box-shadow: 8px 8px 0 var(--gold); }
-      .footer-row { flex-direction: column; }
-    }
-  </style>
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -608,124 +24,113 @@
     "name": "AI Talent",
     "alternateName": "AI's Got Talent",
     "url": "https://aitalent.show/",
-    "description": "An independent talent show for AI creations, artists, agents, music, films and experiments."
+    "description": "A stage for the best, weirdest and most impressive AI creations on the internet."
   }
   </script>
 </head>
 <body>
+  <div id="submission-success" role="status" style="display:none;position:fixed;left:50%;bottom:22px;z-index:50;transform:translateX(-50%);background:#f4c75b;color:#07111f;padding:14px 20px;border-radius:999px;font-weight:800;box-shadow:0 18px 50px rgba(0,0,0,.35);">Submission received. Thank you.</div>
 
-  <div id="submission-success" role="status" style="display:none;position:fixed;left:50%;bottom:22px;z-index:50;transform:translateX(-50%);background:#f4c84a;color:#071a3a;padding:14px 20px;border:2px solid #071a3a;border-radius:999px;font-weight:700;box-shadow:6px 6px 0 #ff5a5f;">Submission received. Thank you.</div>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a class="brand" href="#top"><span class="brand-star" aria-hidden="true"></span><span>AI Talent presents</span></a>
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>AI Talent<small>AI's Got Talent for the internet</small></span>
+      </a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="#format">The format</a>
-        <a href="#acts">What we want</a>
-        <a class="nav-cta" href="#submit">Submit an act</a>
+        <a href="#format">Format</a>
+        <a href="#examples">What we want</a>
+        <a href="#submit">Submit</a>
+        <a class="nav-cta" href="#submit">Enter the show</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="spotlight one"></div>
+      <div class="spotlight two"></div>
+      <div class="spotlight three"></div>
+      <div class="stage-orb"></div>
+      <div class="audience"></div>
+
       <div class="wrap hero-grid">
         <div>
-          <p class="eyebrow">Episode 0 · Open call</p>
+          <p class="eyebrow">Open talent show for AI creations</p>
           <h1>AI'S GOT<br>TALENT</h1>
-          <p class="hero-sub">The open talent show for AI creations. <em>Enter your act. Make the cut. Face the vote.</em></p>
-          <div class="actions" style="margin-top:28px">
-            <a class="button primary" href="#submit">Enter the show</a>
+          <p class="hero-copy">A stage for the <strong>best, weirdest and most impressive AI creations</strong> on the internet.</p>
+          <p class="hero-note">Music. Film. Images. Characters. Agents. Useful tools. Beautiful failures. If it deserves a spotlight, it belongs here.</p>
+          <div class="actions">
+            <a class="button primary" href="#submit">Submit an act</a>
             <a class="button secondary" href="#format">How it works</a>
           </div>
         </div>
 
-        <aside class="hero-card" aria-label="Episode zero summary">
-          <small>Episode 0</small>
-          <strong>Open auditions</strong>
-          <p>Music, film, art, agents, voices, characters, useful AI and beautiful failures.</p>
-          <a class="button dark" href="#format">See the format</a>
+        <aside class="hero-panel">
+          <div class="panel-kicker">How the show works</div>
+          <h3>Submit. Get selected. Face the vote.</h3>
+          <p>Creators send in their best AI work. We shortlist the strongest acts. Then the jury and the public decide what deserves to win.</p>
+          <div class="stats">
+            <div class="stat"><strong>3</strong><span>Simple steps from submission to spotlight.</span></div>
+            <div class="stat"><strong>1</strong><span>Stage for AI art, music, film, agents and more.</span></div>
+            <div class="stat"><strong>∞</strong><span>Possible surprises, breakthroughs and viral moments.</span></div>
+          </div>
         </aside>
       </div>
     </section>
 
-    <div class="category-strip" aria-label="Eligible AI acts">
-      <div class="wrap category-list">
-        <span>Music</span><span>Film</span><span>Art</span><span>Voices</span><span>Agents</span><span>Characters</span><span>Beautiful failures</span>
+    <div class="ticker">
+      <div class="wrap ticker-row">
+        <span class="ticker-tag">Now open</span><p>Submissions are open for the first wave of featured acts.</p>
+        <span class="ticker-tag">Public format</span><p>Selected acts get featured. The public votes on social. The jury picks favorites.</p>
       </div>
     </div>
 
     <section id="format">
       <div class="wrap">
-        <div class="intro-row">
-          <div>
-            <p class="section-kicker">How it works</p>
-            <h2>Three steps. One stage.</h2>
-          </div>
-          <p>Submit your AI creation. We select the official nominees. Then the jury and the public vote on social media.</p>
+        <div class="section-intro">
+          <div><p class="section-kicker">The format</p><h2>Easy to understand.<br>Hard to ignore.</h2></div>
+          <p>This is not a generic gallery. It is a show format: creators submit, standout acts get selected, and the internet gets to react.</p>
         </div>
 
         <div class="steps">
-          <article class="step">
-            <span class="step-number">01</span>
-            <h3>Enter your act</h3>
-            <p>Share your creation through a link, a file or a live demo.</p>
-          </article>
-          <article class="step">
-            <span class="step-number">02</span>
-            <h3>Make the cut</h3>
-            <p>Selected acts become official nominees and receive a visual made to share.</p>
-          </article>
-          <article class="step">
-            <span class="step-number">03</span>
-            <h3>Face the vote</h3>
-            <p>Nominees are presented on social media. Human judges, an AI judge and the public choose the winners.</p>
-          </article>
+          <article class="step"><div class="step-visual"></div><div class="step-body"><span class="step-index">01</span><h3>Submit</h3><p>Send a link, demo, file or short description of your AI creation.</p></div></article>
+          <article class="step"><div class="step-visual"></div><div class="step-body"><span class="step-index">02</span><h3>Get selected</h3><p>The most interesting acts become official nominees and get a shareable visual.</p></div></article>
+          <article class="step"><div class="step-visual"></div><div class="step-body"><span class="step-index">03</span><h3>Face the vote</h3><p>The public votes on social, the jury reacts, and the winners are announced.</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="episode" id="episode">
-      <div class="wrap episode-grid">
-        <div>
-          <p class="section-kicker">Episode 0</p>
-          <h2>Small cast. Real attention.</h2>
-          <p style="font-size:19px;max-width:560px;color:#34405b;margin:24px 0 0">Five official nominees. Seven days of social voting. A compact jury. Four ways to win.</p>
-          <div class="jury-lockup" aria-label="Jury composition">
-            <span class="pill">Human jury</span>
-            <span class="pill">AI judge</span>
-            <span class="pill">Public vote</span>
-          </div>
-        </div>
-
-        <div class="scoreboard" aria-label="Episode format">
-          <div class="scoreboard-head"><span>Episode 0</span><span>Open auditions</span></div>
-          <div class="score-row"><strong>5</strong><span>Official nominees</span></div>
-          <div class="score-row"><strong>7</strong><span>Days of social voting</span></div>
-          <div class="score-row"><strong>4</strong><span>Awards announced</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="acts" id="acts">
+    <section id="examples">
       <div class="wrap">
-        <p class="section-kicker">What we want</p>
-        <h2>Anything that makes us stop.</h2>
+        <div class="section-intro">
+          <div><p class="section-kicker">What we want</p><h2>Beautiful.<br>Funny. Useful. Unhinged.</h2></div>
+          <p>We are looking for work that makes people stop, watch, laugh, admire or ask: “wait, how did you make that?”</p>
+        </div>
 
-        <div class="act-grid">
-          <article class="act-card"><span>Beautiful</span><p>A child hums three notes. AI turns them into a miniature musical.</p></article>
-          <article class="act-card"><span>Funny</span><p>One-star product reviews become Shakespearean tragedy.</p></article>
-          <article class="act-card"><span>Useful</span><p>An agent solves a problem nobody expected it to solve.</p></article>
-          <article class="act-card"><span>Gloriously broken</span><p>A spectacular mistake becomes better than the intended result.</p></article>
+        <div class="examples-grid">
+          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful</span><p>A simple idea becomes unexpectedly moving, elegant or cinematic.</p></div></article>
+          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Funny</span><p>A bizarre, clever or absurd act that people instantly want to share.</p></div></article>
+          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Useful</span><p>An AI tool, workflow or agent that solves a real problem sharply.</p></div></article>
+          <article class="example"><div class="example-art"></div><div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful failure</span><p>A glorious mistake or happy accident that becomes the whole point.</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="submit-section" id="submit">
+    <section class="current">
+      <div class="wrap current-grid">
+        <div class="current-card"><p class="section-kicker">Current call</p><h2>We’re building the first cast now.</h2><p>The first featured acts will set the tone. We are looking for creators who want visibility and a reason to bring their community with them.</p></div>
+        <div class="current-card"><p class="section-kicker">What selected acts get</p><ul><li>Featured nomination on AI Talent</li><li>A shareable “selected” visual</li><li>Public voting exposure on social</li><li>Jury feedback and winner labels</li></ul></div>
+      </div>
+    </section>
+
+    <section id="submit">
       <div class="wrap submit-grid">
         <div class="submit-copy">
-          <p class="section-kicker">Open call</p>
-          <h2>Show us what AI can do.</h2>
-          <p>Submit your AI creation for Episode 0. Selected acts will be featured, judged and opened to public voting on social media.</p>
+          <p class="section-kicker">Submit</p>
+          <h2>Show us what you’ve got.</h2>
+          <p>Use the form to submit an act. You can also email us directly if you prefer to send a link or explain your project first.</p>
           <a class="email-link" href="mailto:hello@aitalent.show">hello@aitalent.show</a>
         </div>
 
@@ -735,80 +140,34 @@
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_next" value="https://aitalent.show/?submitted=true" />
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-
             <input type="hidden" name="submission_type" value="AI creation submission" />
-            <div class="field">
-                <label for="category">Category</label>
-                <select id="category" name="category">
-                  <option>Open / surprise us</option>
-                  <option>Music & voice</option>
-                  <option>Film & animation</option>
-                  <option>Visual art & design</option>
-                  <option>Agents & useful AI</option>
-                  <option>Characters & performance</option>
-                  <option>Comedy & weirdness</option>
-                  <option>Beautiful failure</option>
-                </select>
-            </div>
 
-            <div class="field-grid">
-              <div class="field">
-                <label for="name">Name or alias</label>
-                <input id="name" type="text" name="name" placeholder="Your name" required />
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" type="email" name="email" placeholder="you@example.com" required />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="url">Creation or profile URL</label>
-              <input id="url" type="url" name="url" placeholder="https://" />
-            </div>
-
-            <div class="field">
-              <label for="pitch">One-line pitch</label>
-              <textarea id="pitch" name="pitch" placeholder="What makes this worth seeing?"></textarea>
-            </div>
-
-            <label class="consent">
-              <input type="checkbox" name="permission" value="yes" required />
-              <span>I confirm that I created this work, represent its creator, or have permission to submit it.</span>
-            </label>
-
+            <div class="field"><label for="category">Category</label><select id="category" name="category"><option>Open / surprise us</option><option>Music & voice</option><option>Film & animation</option><option>Visual art & design</option><option>Agents & useful AI</option><option>Characters & performance</option><option>Comedy & weirdness</option><option>Beautiful failure</option></select></div>
+            <div class="field-grid"><div class="field"><label for="name">Name or alias</label><input id="name" type="text" name="name" placeholder="Your name" required /></div><div class="field"><label for="email">Email</label><input id="email" type="email" name="email" placeholder="you@example.com" required /></div></div>
+            <div class="field"><label for="url">Creation or profile URL</label><input id="url" type="url" name="url" placeholder="https://" /></div>
+            <div class="field"><label for="pitch">One-line pitch</label><textarea id="pitch" name="pitch" placeholder="What makes this worth seeing?"></textarea></div>
+            <label class="consent"><input type="checkbox" name="permission" value="yes" required /><span>I confirm that I created this work, represent its creator, or have permission to submit it.</span></label>
             <button class="button primary" type="submit">Send submission</button>
-            <p class="form-note">Form powered by FormSubmit. Email submissions are also welcome.</p>
+            <p class="form-note">Prefer email? Send links and context to hello@aitalent.show.</p>
           </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="small-print">
-      <div class="wrap small-print-grid">
-        <div>
-          <h3>How we judge</h3>
-          <p>Impact, craft, originality, execution and the thing we cannot quite explain.</p>
-        </div>
-        <div>
-          <h3>What happens next</h3>
-          <p>Shortlisted creators are contacted before publication. Nominees receive a shareable selection card and voting details.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footer-row">
-      <span>© AI Talent</span>
-      <span>Independent project. Not affiliated with any existing television franchise, network or format owner.</span>
-    </div>
-  </footer>
+  <footer class="footer"><div class="wrap footer-row"><span>© AI Talent</span><span>Independent project. Not affiliated with any television franchise, broadcaster or format owner.</span></div></footer>
+
   <script>
     if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
       const banner = document.getElementById('submission-success');
       banner.style.display = 'block';
       setTimeout(() => { banner.style.display = 'none'; }, 6000);
+    }
+    if (window.matchMedia('(pointer:fine)').matches) {
+      window.addEventListener('scroll', () => {
+        const y = Math.max(0, Math.min(window.scrollY * .12, 34));
+        document.documentElement.style.setProperty('--parallax', `${y}px`);
+      }, { passive:true });
     }
   </script>
 </body>
