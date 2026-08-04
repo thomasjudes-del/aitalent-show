@@ -49,12 +49,8 @@
       100% { opacity: .18; filter: blur(1px) brightness(1.15); }
     }
 
-    .hero-panel > p span {
-      display: block;
-    }
-    .hero-panel > p span + span {
-      margin-top: 10px;
-    }
+    .hero-panel > p span { display: block; }
+    .hero-panel > p span + span { margin-top: 10px; }
     .stat:nth-child(1) strong { color: var(--gold); }
     .stat:nth-child(2) strong { color: var(--cyan); }
     .stat:nth-child(3) strong { color: var(--pink); }
@@ -65,12 +61,39 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .ticker-link:hover .ticker-tag {
-      filter: brightness(1.18);
-    }
+    .ticker-link:hover .ticker-tag { filter: brightness(1.18); }
+    .format-intro { grid-template-columns: 1fr; }
 
-    .format-intro {
-      grid-template-columns: 1fr;
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+    }
+    .lang-toggle button {
+      min-width: 34px;
+      height: 30px;
+      padding: 0 8px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      cursor: pointer;
+    }
+    .lang-toggle button.active {
+      background: var(--gold);
+      color: #07111f;
+    }
+    .lang-toggle button:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
     }
 
     .step-visual {
@@ -119,9 +142,7 @@
       backdrop-filter: blur(8px);
     }
 
-    .examples-grid {
-      grid-template-columns: repeat(5, 1fr);
-    }
+    .examples-grid { grid-template-columns: repeat(5, 1fr); }
     .example-art { display: none !important; }
     .example-photo {
       position: absolute;
@@ -134,9 +155,7 @@
       transform: scale(1.06);
       filter: saturate(1.08) contrast(1.08) brightness(.9);
     }
-    .example-overlay {
-      background: linear-gradient(180deg, rgba(4,9,17,.06) 18%, rgba(4,9,17,.88) 100%);
-    }
+    .example-overlay { background: linear-gradient(180deg, rgba(4,9,17,.06) 18%, rgba(4,9,17,.88) 100%); }
     .example-tag {
       background: rgba(7,17,31,.78);
       border: 1px solid rgba(255,255,255,.15);
@@ -166,19 +185,20 @@
       padding-left: 18px;
       color: var(--text);
     }
-    .submit-benefits li {
-      margin: 9px 0;
-    }
-    #pitch {
-      min-height: 220px;
-    }
+    .submit-benefits li { margin: 9px 0; }
+    #pitch { min-height: 220px; }
 
     @media (max-width: 1180px) {
       .examples-grid { grid-template-columns: repeat(3, 1fr); }
     }
+    @media (max-width: 850px) {
+      .nav { gap: 8px; }
+      .lang-toggle { margin-left: auto; }
+    }
     @media (max-width: 720px) {
       .examples-grid { grid-template-columns: 1fr; }
       .submit-showcase { background-position: 60% center; }
+      .lang-toggle button { min-width: 31px; padding: 0 6px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -204,19 +224,22 @@
   </script>
 </head>
 <body>
-  <div id="submission-success" role="status" style="display:none;position:fixed;left:50%;bottom:22px;z-index:50;transform:translateX(-50%);background:#f4c75b;color:#07111f;padding:14px 20px;border-radius:999px;font-weight:800;box-shadow:0 18px 50px rgba(0,0,0,.35);">Submission received. Thank you.</div>
+  <div id="submission-success" data-i18n="submissionSuccess" role="status" style="display:none;position:fixed;left:50%;bottom:22px;z-index:50;transform:translateX(-50%);background:#f4c75b;color:#07111f;padding:14px 20px;border-radius:999px;font-weight:800;box-shadow:0 18px 50px rgba(0,0,0,.35);">Submission received. Thank you.</div>
 
   <header class="topbar">
     <div class="wrap topbar-inner">
       <a class="brand" href="#top">
         <span class="brand-mark" aria-hidden="true"></span>
-        <span>AI Talent<small>AI's got talent indeed!</small></span>
+        <span>AI Talent<small data-i18n="brandTagline">AI's got talent indeed!</small></span>
       </a>
       <nav class="nav" aria-label="Main navigation">
-        <a href="#format">Format</a>
-        <a href="#examples">What we want</a>
-        <a href="#submit">Submit</a>
-        <a class="nav-cta" href="#submit">Enter the show</a>
+        <a href="#format" data-i18n="navFormat">Format</a>
+        <a href="#examples" data-i18n="navWanted">What we want</a>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="nav-cta" href="#submit" data-i18n="navEnter">Enter the show</a>
       </nav>
     </div>
   </header>
@@ -232,65 +255,65 @@
 
       <div class="wrap hero-grid" data-content-depth=".15">
         <div>
-          <p class="eyebrow">Open talent show for AI creations</p>
-          <h1>AI'S GOT<br>TALENT</h1>
-          <p class="hero-copy">A stage for the <strong>best, weirdest and most impressive AI creations</strong> on the internet.</p>
+          <p class="eyebrow" data-i18n="heroEyebrow">Open talent show for AI creations</p>
+          <h1 data-i18n="heroTitle" data-i18n-html="true">AI'S GOT<br>TALENT</h1>
+          <p class="hero-copy" data-i18n="heroCopy" data-i18n-html="true">A stage for the <strong>best, weirdest and most impressive AI creations</strong> on the internet.</p>
           <div class="actions">
-            <a class="button primary" href="#submit">Submit an act</a>
-            <a class="button secondary" href="#format">How it works</a>
+            <a class="button primary" href="#submit" data-i18n="submitAct">Submit an act</a>
+            <a class="button secondary" href="#format" data-i18n="howItWorks">How it works</a>
           </div>
         </div>
 
         <aside class="hero-panel">
-          <h3>Submit. Get selected. Face the vote.</h3>
+          <h3 data-i18n="panelTitle">Submit. Get selected. Face the vote.</h3>
           <p>
-            <span>Creators send in their best AI work.</span>
-            <span>We shortlist the strongest acts.</span>
-            <span>Then the jury and the public decide what deserves to win.</span>
+            <span data-i18n="panelLine1">Creators send in their best AI work.</span>
+            <span data-i18n="panelLine2">We shortlist the strongest acts.</span>
+            <span data-i18n="panelLine3">Then the jury and the public decide what deserves to win.</span>
           </p>
           <div class="stats">
-            <div class="stat"><strong>3</strong><span>Simple steps from submission to spotlight.</span></div>
-            <div class="stat"><strong>1</strong><span>Stage for AI art, music, film, agents and more.</span></div>
-            <div class="stat"><strong>∞</strong><span>Possible surprises, breakthroughs and viral moments.</span></div>
+            <div class="stat"><strong>3</strong><span data-i18n="stat1">Simple steps from submission to spotlight.</span></div>
+            <div class="stat"><strong>1</strong><span data-i18n="stat2">Stage for AI art, music, film, agents and more.</span></div>
+            <div class="stat"><strong>∞</strong><span data-i18n="stat3">Possible surprises, breakthroughs and viral moments.</span></div>
           </div>
         </aside>
       </div>
     </section>
 
-    <a class="ticker ticker-link" href="#submit" aria-label="Go to submissions">
+    <a class="ticker ticker-link" href="#submit" data-i18n-aria="tickerAria" aria-label="Go to submissions">
       <div class="wrap ticker-row">
-        <span class="ticker-tag">Now open</span><p>Submissions are open!</p>
-        <span class="ticker-tag">Public format</span><p>Selected acts get featured. The public votes on social. The jury picks favorites.</p>
+        <span class="ticker-tag" data-i18n="tickerOpen">Now open</span><p data-i18n="tickerOpenText">Submissions are open!</p>
+        <span class="ticker-tag" data-i18n="tickerPublic">Public format</span><p data-i18n="tickerPublicText">Selected acts get featured. The public votes on social. The jury picks favorites.</p>
       </div>
     </a>
 
     <section id="format">
       <div class="wrap">
         <div class="section-intro format-intro">
-          <div><p class="section-kicker">The format</p><h2>Easy to understand.<br>Hard to ignore.</h2></div>
+          <div><p class="section-kicker" data-i18n="formatKicker">The format</p><h2 data-i18n="formatTitle" data-i18n-html="true">Easy to understand.<br>Hard to ignore.</h2></div>
         </div>
 
         <div class="steps">
           <article class="step">
             <div class="step-visual">
               <img class="step-photo" src="https://images.pexels.com/photos/18259219/pexels-photo-18259219.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Singer performing live on stage" loading="lazy" />
-              <div class="photo-overlay"></div><span class="photo-label">Enter the stage</span>
+              <div class="photo-overlay"></div><span class="photo-label" data-i18n="step1Label">Enter the stage</span>
             </div>
-            <div class="step-body"><span class="step-index">01</span><h3>Submit</h3><p>Send a link, demo, file or short description of your AI creation.</p></div>
+            <div class="step-body"><span class="step-index">01</span><h3 data-i18n="step1Title">Submit</h3><p data-i18n="step1Text">Send a link, demo, file or short description of your AI creation.</p></div>
           </article>
           <article class="step">
             <div class="step-visual">
               <img class="step-photo" src="https://images.pexels.com/photos/31731254/pexels-photo-31731254.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Audience applauding performers in a theater" loading="lazy" />
-              <div class="photo-overlay"></div><span class="photo-label">Official selection</span>
+              <div class="photo-overlay"></div><span class="photo-label" data-i18n="step2Label">Official selection</span>
             </div>
-            <div class="step-body"><span class="step-index">02</span><h3>Get selected</h3><p>The most interesting acts become official nominees and get a shareable visual.</p></div>
+            <div class="step-body"><span class="step-index">02</span><h3 data-i18n="step2Title">Get selected</h3><p data-i18n="step2Text">The most interesting acts become official nominees and get a shareable visual.</p></div>
           </article>
           <article class="step">
             <div class="step-visual">
               <img class="step-photo" src="https://images.pexels.com/photos/9972662/pexels-photo-9972662.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Performer facing a live audience holding smartphones" loading="lazy" />
-              <div class="photo-overlay"></div><span class="photo-label">Public reaction</span>
+              <div class="photo-overlay"></div><span class="photo-label" data-i18n="step3Label">Public reaction</span>
             </div>
-            <div class="step-body"><span class="step-index">03</span><h3>Face the vote</h3><p>The public votes on social, the jury reacts, and the winners are announced.</p></div>
+            <div class="step-body"><span class="step-index">03</span><h3 data-i18n="step3Title">Face the vote</h3><p data-i18n="step3Text">The public votes on social, the jury reacts, and the winners are announced.</p></div>
           </article>
         </div>
       </div>
@@ -299,30 +322,30 @@
     <section id="examples">
       <div class="wrap">
         <div class="section-intro">
-          <div><p class="section-kicker">What we want</p><h2>Beautiful.<br>Funny. Useful. Unhinged.</h2></div>
-          <p>We are looking for work that makes people stop, watch, laugh, admire or ask: “wait, how did you make that?”</p>
+          <div><p class="section-kicker" data-i18n="wantedKicker">What we want</p><h2 data-i18n="wantedTitle" data-i18n-html="true">Beautiful.<br>Funny. Useful. Unhinged.</h2></div>
+          <p data-i18n="wantedText">We are looking for work that makes people stop, watch, laugh, admire or ask: “wait, how did you make that?”</p>
         </div>
 
         <div class="examples-grid">
           <article class="example">
             <img class="example-photo" src="https://images.pexels.com/photos/29751268/pexels-photo-29751268.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Vivid AI-style digital art with a glowing prism" loading="lazy" />
-            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful</span><p>A simple idea becomes unexpectedly moving, elegant or cinematic.</p></div>
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag" data-i18n="exampleBeautiful">Beautiful</span><p data-i18n="exampleBeautifulText">A simple idea becomes unexpectedly moving, elegant or cinematic.</p></div>
           </article>
           <article class="example">
             <img class="example-photo" src="https://images.pexels.com/photos/8566540/pexels-photo-8566540.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Playful futuristic robot with a digital face" loading="lazy" />
-            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Funny</span><p>A strange AI character, voice or joke that people instantly want to share.</p></div>
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag" data-i18n="exampleFunny">Funny</span><p data-i18n="exampleFunnyText">A strange AI character, voice or joke that people instantly want to share.</p></div>
           </article>
           <article class="example">
             <img class="example-photo" src="https://images.pexels.com/photos/34804017/pexels-photo-34804017.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="AI actions and code on a computer screen" loading="lazy" />
-            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Useful</span><p>An AI tool, workflow or agent that solves a real problem sharply.</p></div>
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag" data-i18n="exampleUseful">Useful</span><p data-i18n="exampleUsefulText">An AI tool, workflow or agent that solves a real problem sharply.</p></div>
           </article>
           <article class="example">
             <img class="example-photo" src="https://images.pexels.com/photos/11177794/pexels-photo-11177794.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Chaotic and beautiful digital artwork" loading="lazy" />
-            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">Beautiful failure</span><p>A glorious mistake or happy accident that becomes the whole point.</p></div>
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag" data-i18n="exampleFailure">Beautiful failure</span><p data-i18n="exampleFailureText">A glorious mistake or happy accident that becomes the whole point.</p></div>
           </article>
           <article class="example">
             <img class="example-photo" src="https://images.pexels.com/photos/18419508/pexels-photo-18419508.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Futuristic digital experiment with neon lights" loading="lazy" />
-            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">...</span><p>Music, film, characters, voices, agents, games, experiments — surprise us.</p></div>
+            <div class="example-overlay"></div><div class="example-body"><span class="example-tag">...</span><p data-i18n="exampleMoreText">Music, film, characters, voices, agents, games, experiments — surprise us.</p></div>
           </article>
         </div>
       </div>
@@ -331,42 +354,236 @@
     <section id="submit" class="submit-showcase">
       <div class="wrap submit-grid">
         <div class="submit-copy">
-          <p class="section-kicker">Submit</p>
-          <h2>Show us what you’ve got.</h2>
-          <p>Use the form to submit an act. You can also email us directly if you prefer to send a link or explain your project first.</p>
+          <p class="section-kicker" data-i18n="submitKicker">Submit</p>
+          <h2 data-i18n="submitTitle">Show us what you’ve got.</h2>
+          <p data-i18n="submitText">Use the form to submit an act. You can also email us directly if you prefer to send a link or explain your project first.</p>
           <ul class="submit-benefits">
-            <li>Featured nomination on AI Talent</li>
-            <li>A shareable “selected” visual</li>
-            <li>Public voting exposure on social</li>
-            <li>Jury feedback and winner labels</li>
+            <li data-i18n="benefit1">Featured nomination on AI Talent</li>
+            <li data-i18n="benefit2">A shareable “selected” visual</li>
+            <li data-i18n="benefit3">Public voting exposure on social</li>
+            <li data-i18n="benefit4">Jury feedback and winner labels</li>
           </ul>
           <a class="email-link" href="mailto:hello@aitalent.show">hello@aitalent.show</a>
         </div>
 
         <div class="form-card">
           <form action="https://formsubmit.co/hello@aitalent.show" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="_subject" value="New AI Talent submission" />
+            <input type="hidden" name="_subject" value="New AI Talent submission" data-i18n-value="formSubject" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_next" value="https://aitalent.show/?submitted=true" />
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
             <input type="hidden" name="submission_type" value="AI creation submission" />
 
-            <div class="field"><label for="category">Category</label><select id="category" name="category"><option>Open / surprise us</option><option>Music & voice</option><option>Film & animation</option><option>Visual art & design</option><option>Agents & useful AI</option><option>Characters & performance</option><option>Comedy & weirdness</option><option>Beautiful failure</option></select></div>
-            <div class="field-grid"><div class="field"><label for="name">Name or alias</label><input id="name" type="text" name="name" placeholder="Your name" required /></div><div class="field"><label for="email">Email</label><input id="email" type="email" name="email" placeholder="you@example.com" required /></div></div>
-            <div class="field"><label for="url">Creation or profile URL</label><input id="url" type="url" name="url" placeholder="https://" /></div>
-            <div class="field"><label for="pitch">Extensive pitch</label><textarea id="pitch" name="pitch" rows="8" placeholder="Tell us what the act does, how it was made, why it matters, which tools were used, and anything the jury should know."></textarea></div>
-            <label class="consent"><input type="checkbox" name="permission" value="yes" required /><span>I confirm that I created this work, represent its creator, or have permission to submit it.</span></label>
-            <button class="button primary" type="submit">Send submission</button>
-            <p class="form-note">Prefer email? Send links and context to hello@aitalent.show.</p>
+            <div class="field"><label for="category" data-i18n="formCategory">Category</label><select id="category" name="category"><option data-i18n="categoryOpen">Open / surprise us</option><option data-i18n="categoryMusic">Music & voice</option><option data-i18n="categoryFilm">Film & animation</option><option data-i18n="categoryVisual">Visual art & design</option><option data-i18n="categoryAgents">Agents & useful AI</option><option data-i18n="categoryCharacters">Characters & performance</option><option data-i18n="categoryComedy">Comedy & weirdness</option><option data-i18n="categoryFailure">Beautiful failure</option></select></div>
+            <div class="field-grid"><div class="field"><label for="name" data-i18n="formName">Name or alias</label><input id="name" type="text" name="name" placeholder="Your name" data-i18n-placeholder="formNamePlaceholder" required /></div><div class="field"><label for="email">Email</label><input id="email" type="email" name="email" placeholder="you@example.com" required /></div></div>
+            <div class="field"><label for="url" data-i18n="formUrl">Creation or profile URL</label><input id="url" type="url" name="url" placeholder="https://" /></div>
+            <div class="field"><label for="pitch" data-i18n="formPitch">Extensive pitch</label><textarea id="pitch" name="pitch" rows="8" placeholder="Tell us what the act does, how it was made, why it matters, which tools were used, and anything the jury should know." data-i18n-placeholder="formPitchPlaceholder"></textarea></div>
+            <label class="consent"><input type="checkbox" name="permission" value="yes" required /><span data-i18n="formPermission">I confirm that I created this work, represent its creator, or have permission to submit it.</span></label>
+            <button class="button primary" type="submit" data-i18n="formSubmit">Send submission</button>
+            <p class="form-note" data-i18n="formNote">Prefer email? Send links and context to hello@aitalent.show.</p>
           </form>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="wrap footer-row"><span>© AI Talent</span><span>Independent project. Not affiliated with any television franchise, broadcaster or format owner.</span></div></footer>
+  <footer class="footer"><div class="wrap footer-row"><span>© AI Talent</span><span data-i18n="footerDisclaimer">Independent project. Not affiliated with any television franchise, broadcaster or format owner.</span></div></footer>
 
   <script>
+    const translations = {
+      en: {
+        pageTitle: "AI Talent — AI's Got Talent for the internet",
+        pageDescription: "AI Talent is the stage for the best, weirdest and most impressive AI creations on the internet. Submit your act. Get selected. Face the vote.",
+        submissionSuccess: "Submission received. Thank you.",
+        brandTagline: "AI's got talent indeed!",
+        navFormat: "Format",
+        navWanted: "What we want",
+        navEnter: "Enter the show",
+        heroEyebrow: "Open talent show for AI creations",
+        heroTitle: "AI'S GOT<br>TALENT",
+        heroCopy: "A stage for the <strong>best, weirdest and most impressive AI creations</strong> on the internet.",
+        submitAct: "Submit an act",
+        howItWorks: "How it works",
+        panelTitle: "Submit. Get selected. Face the vote.",
+        panelLine1: "Creators send in their best AI work.",
+        panelLine2: "We shortlist the strongest acts.",
+        panelLine3: "Then the jury and the public decide what deserves to win.",
+        stat1: "Simple steps from submission to spotlight.",
+        stat2: "Stage for AI art, music, film, agents and more.",
+        stat3: "Possible surprises, breakthroughs and viral moments.",
+        tickerAria: "Go to submissions",
+        tickerOpen: "Now open",
+        tickerOpenText: "Submissions are open!",
+        tickerPublic: "Public format",
+        tickerPublicText: "Selected acts get featured. The public votes on social. The jury picks favorites.",
+        formatKicker: "The format",
+        formatTitle: "Easy to understand.<br>Hard to ignore.",
+        step1Label: "Enter the stage",
+        step1Title: "Submit",
+        step1Text: "Send a link, demo, file or short description of your AI creation.",
+        step2Label: "Official selection",
+        step2Title: "Get selected",
+        step2Text: "The most interesting acts become official nominees and get a shareable visual.",
+        step3Label: "Public reaction",
+        step3Title: "Face the vote",
+        step3Text: "The public votes on social, the jury reacts, and the winners are announced.",
+        wantedKicker: "What we want",
+        wantedTitle: "Beautiful.<br>Funny. Useful. Unhinged.",
+        wantedText: "We are looking for work that makes people stop, watch, laugh, admire or ask: “wait, how did you make that?”",
+        exampleBeautiful: "Beautiful",
+        exampleBeautifulText: "A simple idea becomes unexpectedly moving, elegant or cinematic.",
+        exampleFunny: "Funny",
+        exampleFunnyText: "A strange AI character, voice or joke that people instantly want to share.",
+        exampleUseful: "Useful",
+        exampleUsefulText: "An AI tool, workflow or agent that solves a real problem sharply.",
+        exampleFailure: "Beautiful failure",
+        exampleFailureText: "A glorious mistake or happy accident that becomes the whole point.",
+        exampleMoreText: "Music, film, characters, voices, agents, games, experiments — surprise us.",
+        submitKicker: "Submit",
+        submitTitle: "Show us what you’ve got.",
+        submitText: "Use the form to submit an act. You can also email us directly if you prefer to send a link or explain your project first.",
+        benefit1: "Featured nomination on AI Talent",
+        benefit2: "A shareable “selected” visual",
+        benefit3: "Public voting exposure on social",
+        benefit4: "Jury feedback and winner labels",
+        formSubject: "New AI Talent submission",
+        formCategory: "Category",
+        categoryOpen: "Open / surprise us",
+        categoryMusic: "Music & voice",
+        categoryFilm: "Film & animation",
+        categoryVisual: "Visual art & design",
+        categoryAgents: "Agents & useful AI",
+        categoryCharacters: "Characters & performance",
+        categoryComedy: "Comedy & weirdness",
+        categoryFailure: "Beautiful failure",
+        formName: "Name or alias",
+        formNamePlaceholder: "Your name",
+        formUrl: "Creation or profile URL",
+        formPitch: "Extensive pitch",
+        formPitchPlaceholder: "Tell us what the act does, how it was made, why it matters, which tools were used, and anything the jury should know.",
+        formPermission: "I confirm that I created this work, represent its creator, or have permission to submit it.",
+        formSubmit: "Send submission",
+        formNote: "Prefer email? Send links and context to hello@aitalent.show.",
+        footerDisclaimer: "Independent project. Not affiliated with any television franchise, broadcaster or format owner."
+      },
+      fr: {
+        pageTitle: "AI Talent — Le talent show des créations IA",
+        pageDescription: "AI Talent met en scène les créations IA les plus brillantes, étranges et impressionnantes du web. Candidatez, soyez sélectionné et affrontez le vote.",
+        submissionSuccess: "Candidature reçue. Merci.",
+        brandTagline: "L’IA a vraiment du talent !",
+        navFormat: "Format",
+        navWanted: "Ce que nous cherchons",
+        navEnter: "Participer",
+        heroEyebrow: "Le talent show ouvert aux créations IA",
+        heroTitle: "L’IA A<br>DU TALENT",
+        heroCopy: "Une scène pour les <strong>créations IA les plus brillantes, étranges et impressionnantes</strong> du web.",
+        submitAct: "Proposer un numéro",
+        howItWorks: "Comment ça marche",
+        panelTitle: "Candidatez. Soyez sélectionné. Affrontez le vote.",
+        panelLine1: "Les créateurs nous envoient leurs meilleures créations IA.",
+        panelLine2: "Nous sélectionnons les numéros les plus marquants.",
+        panelLine3: "Puis le jury et le public décident qui mérite de gagner.",
+        stat1: "Étapes simples, de la candidature aux projecteurs.",
+        stat2: "Une scène pour l’art, la musique, le film, les agents IA et plus encore.",
+        stat3: "Surprises, percées et moments viraux possibles.",
+        tickerAria: "Accéder aux candidatures",
+        tickerOpen: "Candidatures ouvertes",
+        tickerOpenText: "Les candidatures sont ouvertes !",
+        tickerPublic: "Format public",
+        tickerPublicText: "Les numéros sélectionnés sont mis en avant. Le public vote sur les réseaux. Le jury désigne ses favoris.",
+        formatKicker: "Le format",
+        formatTitle: "Simple à comprendre.<br>Impossible à ignorer.",
+        step1Label: "Entrez en scène",
+        step1Title: "Candidatez",
+        step1Text: "Envoyez un lien, une démo, un fichier ou une courte présentation de votre création IA.",
+        step2Label: "Sélection officielle",
+        step2Title: "Soyez sélectionné",
+        step2Text: "Les numéros les plus intéressants deviennent candidats officiels et reçoivent un visuel à partager.",
+        step3Label: "Réaction du public",
+        step3Title: "Affrontez le vote",
+        step3Text: "Le public vote sur les réseaux, le jury réagit et les gagnants sont annoncés.",
+        wantedKicker: "Ce que nous cherchons",
+        wantedTitle: "Beau.<br>Drôle. Utile. Déjanté.",
+        wantedText: "Nous cherchons des créations qui font s’arrêter, regarder, rire, admirer ou demander : « Attends, comment tu as fait ça ? »",
+        exampleBeautiful: "Beau",
+        exampleBeautifulText: "Une idée simple devient soudain émouvante, élégante ou cinématographique.",
+        exampleFunny: "Drôle",
+        exampleFunnyText: "Un personnage, une voix ou une blague IA étrange que l’on veut immédiatement partager.",
+        exampleUseful: "Utile",
+        exampleUsefulText: "Un outil, workflow ou agent IA qui résout nettement un vrai problème.",
+        exampleFailure: "Échec magnifique",
+        exampleFailureText: "Une erreur spectaculaire ou un heureux accident qui devient tout l’intérêt.",
+        exampleMoreText: "Musique, film, personnages, voix, agents, jeux, expériences — surprenez-nous.",
+        submitKicker: "Candidater",
+        submitTitle: "Montrez-nous ce que vous avez.",
+        submitText: "Utilisez le formulaire pour proposer un numéro. Vous pouvez aussi nous écrire directement pour envoyer un lien ou présenter d’abord votre projet.",
+        benefit1: "Une nomination mise en avant sur AI Talent",
+        benefit2: "Un visuel « sélectionné » prêt à partager",
+        benefit3: "Une exposition au vote public sur les réseaux",
+        benefit4: "Les retours du jury et les titres de gagnant",
+        formSubject: "Nouvelle candidature AI Talent",
+        formCategory: "Catégorie",
+        categoryOpen: "Ouvert / surprenez-nous",
+        categoryMusic: "Musique & voix",
+        categoryFilm: "Film & animation",
+        categoryVisual: "Arts visuels & design",
+        categoryAgents: "Agents & IA utile",
+        categoryCharacters: "Personnages & performance",
+        categoryComedy: "Humour & étrangeté",
+        categoryFailure: "Échec magnifique",
+        formName: "Nom ou pseudo",
+        formNamePlaceholder: "Votre nom",
+        formUrl: "URL de la création ou du profil",
+        formPitch: "Présentation détaillée",
+        formPitchPlaceholder: "Expliquez ce que fait le numéro, comment il a été créé, pourquoi il compte, quels outils ont été utilisés et tout ce que le jury doit savoir.",
+        formPermission: "Je confirme avoir créé cette œuvre, représenter son créateur ou avoir l’autorisation de la proposer.",
+        formSubmit: "Envoyer la candidature",
+        formNote: "Vous préférez l’email ? Envoyez vos liens et le contexte à hello@aitalent.show.",
+        footerDisclaimer: "Projet indépendant, sans affiliation avec une franchise télévisée, un diffuseur ou un détenteur de format existant."
+      }
+    };
+
+    function applyLanguage(lang) {
+      const chosen = translations[lang] ? lang : 'en';
+      const copy = translations[chosen];
+      document.documentElement.lang = chosen;
+      document.title = copy.pageTitle;
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.setAttribute('content', copy.pageDescription);
+
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const value = copy[element.dataset.i18n];
+        if (value === undefined) return;
+        if (element.dataset.i18nHtml === 'true') element.innerHTML = value;
+        else element.textContent = value;
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+        const value = copy[element.dataset.i18nPlaceholder];
+        if (value !== undefined) element.setAttribute('placeholder', value);
+      });
+      document.querySelectorAll('[data-i18n-value]').forEach((element) => {
+        const value = copy[element.dataset.i18nValue];
+        if (value !== undefined) element.value = value;
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
+        const value = copy[element.dataset.i18nAria];
+        if (value !== undefined) element.setAttribute('aria-label', value);
+      });
+      document.querySelectorAll('[data-lang]').forEach((button) => {
+        const active = button.dataset.lang === chosen;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('aiTalentLanguage', chosen);
+    }
+
+    document.querySelectorAll('[data-lang]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.lang));
+    });
+    const savedLanguage = localStorage.getItem('aiTalentLanguage');
+    const initialLanguage = savedLanguage || (navigator.language.toLowerCase().startsWith('fr') ? 'fr' : 'en');
+    applyLanguage(initialLanguage);
+
     if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
       const banner = document.getElementById('submission-success');
       banner.style.display = 'block';
